@@ -1,0 +1,23 @@
+<h1>List of all User Stories</h1>
+
+<% @stories.each_with_index do |story, index| %>
+	<%= "#{index + 1}" %>. <%= story.user.name %><%= story.body %>
+<% end %>
+
+<h2>Create a new story: </h2>
+
+<%= form_tag(stories_path, :method=>'post', :multipart => true) do %>
+ <p>
+   Body:<br />
+   <%= text_field_tag "body" %>
+ </p>
+ <% end %>
+
+ <% a = @total_grade.count("A") %>
+
+ <% b = @total_grade.size  %>
+
+ Your Score: <%= ((a/b.to_f) * 100).to_i %>%
+
+ <%= @total_grade %>
+

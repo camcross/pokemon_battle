@@ -1,0 +1,16 @@
+<h1>List of all Users</h1>
+
+<% @users.each_with_index do |user, index| %>
+	<%= "#{index + 1}" %>. <%= user.name %>
+<% end %>
+
+<h2>Create a new user: </h2>
+
+<%= form_tag(users_path, :method=>'post', :multipart => true) do %>
+ <p>
+   Name:<br />
+   <%= text_field_tag "name" %>
+ </p>
+ <% end %>
+
+ <%= link_to 'Stories', stories_path %>
