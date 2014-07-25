@@ -35,21 +35,21 @@ occur. Thanks! (Greg Baker - Sep 5, 2013)"
 56717694,change subscriber authentication url and switch to basic auth,"",4,"Sep 8, 2013","Sep 14, 2013",feature,1,accepted,"Sep 10, 2013","Sep 10, 2013",,Greg Baker,,https://www.pivotaltracker.com/story/show/56717694,Greg Baker,,
 56258686,Remove all regions logic,"",4,"Sep 8, 2013","Sep 14, 2013",feature,1,accepted,"Sep 3, 2013","Sep 12, 2013",,Eldon de Waal,"-> company level
 -> Publication level",https://www.pivotaltracker.com/story/show/56258686,Greg Baker,,
-56691216,Unable to access FTP foldert,"",4,"Sep 8, 2013","Sep 14, 2013",bug,,accepted,"Sep 10, 2013","Sep 12, 2013",,Eldon de Waal,"Command:	USER mds@lindhardtogringhof.dk
-Response:	331 User mds@lindhardtogringhof.dk OK. Password required
-Command:	PASS:  lindhard772tog
-Response:	530 Login authentication failed
-Error:	Critical error
-Error:	Could not connect to server
+56691216,Unable to access FTP foldert,"",4,"Sep 8, 2013","Sep 14, 2013",bug,,accepted,"Sep 10, 2013","Sep 12, 2013",,Eldon de Waal,"Command:    USER mds@lindhardtogringhof.dk
+Response:   331 User mds@lindhardtogringhof.dk OK. Password required
+Command:    PASS:  lindhard772tog
+Response:   530 Login authentication failed
+Error:  Critical error
+Error:  Could not connect to server
 
 and also
 
-Command:	USER mds@gyldendal.dk
-Response:	331 User mds@gyldendal.dk OK. Password required
-Command:	PASS gylden735dal
-Response:	530 Login authentication failed
-Error:	Critical error
-Error:	Could not connect to server
+Command:    USER mds@gyldendal.dk
+Response:   331 User mds@gyldendal.dk OK. Password required
+Command:    PASS gylden735dal
+Response:   530 Login authentication failed
+Error:  Critical error
+Error:  Could not connect to server
 ",https://www.pivotaltracker.com/story/show/56691216,Greg Baker,,
 56937172,Add BIC/BISAC delta category mappings,"",5,"Sep 15, 2013","Sep 21, 2013",feature,1,accepted,"Sep 13, 2013","Sep 16, 2013",,Eldon de Waal,As per email instrructions,https://www.pivotaltracker.com/story/show/56937172,Greg Baker,,
 57306854,Clean up Publishers to Imprints,"",5,"Sep 15, 2013","Sep 21, 2013",feature,0,accepted,"Sep 19, 2013","Sep 19, 2013",,Eldon de Waal,"On /admin/ebooks
@@ -522,7 +522,7 @@ Sorry, i was using the subscription id (the link between a book club and a subsc
 
 No checkout_info section as without auth there is no user. (Greg Baker - Dec 12, 2013)","apiv2/subscriptions/1/categories/74/publications?retailer_id=3 is returning checkout_info for Dracula but it's not currently checked out for user ramone@ereadz.com:themuppets @gregbaker1  (Ramone - Dec 20, 2013)","fixed. it was returning it because a checkout existed for the publication. however, the checkout was in state 'in'. i've changed the code to only show checkouts that are currently out.  (Greg Baker - Dec 20, 2013)","When using anders@ereadz.com:themuppets with ""http://staging.mogulview.com/apiv2/subscriptions/1/categories/74/publications?retailer_id=3. The first item is returned with the following download url: ""http://staging.mogulview.com/downloads/17591bdde9d1860c820b2bf9db480b9c43ef217e.epub?1388519395"". This URL doesn't work and is different from the one returned by the Get Checkouts endpoint. @gregbaker1  (Ramone - Jan 6, 2014)","I've changed this to return the correct download url, however this will only be displayed if the publication has a checkout record for the authenticated user. The download url will point to the downloads endpoint and will require all the details as per the spec. (Greg Baker - Jan 8, 2014)",,,,,,,,,,,,,,,,,,,,,,,subscriber_not_in_subscription should just be treated as the no auth case,completed,"""format"" is missing from list of publications returned",completed,Getting 406 for http://staging.mogulview.com/apiv2/subscriptions/1/categories/135/publications?subscription_id=1&retailer_id=3&category_id=74 ,completed,The download url returned for checked out books is incorrect. See comment below. Should follow https://sites.google.com/site/emviemwiki/mds/api2/endpoints/subscription/download-checkout,completed
 63458954,Get List of Promotions should work for new device ids,"",22,"Jan 12, 2014","Jan 18, 2014",feature,0,accepted,"Jan 8, 2014","Jan 15, 2014",,Ramone,"If a device_id has been already been used to redeem a promotion, the server should respond with the device_id_already_used error. If a new device_id (that is not in the system) the server should still return the list of promotions. Obviously this means that the new device_id should also be able to redeem the promotion. Now the question is, do you need any additional parameters to add this new device, ie. Platform, Client Version, etc. We could perhaps add this to the Redeem Promotion endpoint.",https://www.pivotaltracker.com/story/show/63458954,Greg Baker,,,"https://sites.google.com/site/emviemwiki/mds/mds-api/p/request-promotions (Ramone - Jan 13, 2014)","As discussed today, as these attributes are not required, i've removed the validations that run when a new device record is created. I've also allowed a new record to be created if it does not exist.  So this should be working now on staging. (Greg Baker - Jan 13, 2014)"
-64510312,URGENT: Fulfilment token not working for transaction id=4732	,"",24,"Jan 26, 2014","Feb 1, 2014",bug,,accepted,"Jan 24, 2014","Jan 27, 2014",,Eldon de Waal,This affects production,https://www.pivotaltracker.com/story/show/64510312,Greg Baker,,,"Pubhub is reporting error code 50015: bookId {[GUID]} is not active.
+64510312,URGENT: Fulfilment token not working for transaction id=4732   ,"",24,"Jan 26, 2014","Feb 1, 2014",bug,,accepted,"Jan 24, 2014","Jan 27, 2014",,Eldon de Waal,This affects production,https://www.pivotaltracker.com/story/show/64510312,Greg Baker,,,"Pubhub is reporting error code 50015: bookId {[GUID]} is not active.
 
 The current Pubhub import script does not have functionality to update publications. It just skips over them if they already exist in the database. The script needs to be modified to update products for cases like this.
  (Greg Baker - Jan 27, 2014)","Hi Greg, please go ahead and modify the import script to get new and updated records on a daily basis (Eldon de Waal - Jan 27, 2014)"

@@ -1,0 +1,27 @@
+<h1>Listing postnames</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Body</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @postnames.each do |postname| %>
+      <tr>
+        <td><%= postname.name %></td>
+        <td><%= postname.body %></td>
+        <td><%= link_to 'Show', postname %></td>
+        <td><%= link_to 'Edit', edit_postname_path(postname) %></td>
+        <td><%= link_to 'Destroy', postname, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Postname', new_postname_path %>

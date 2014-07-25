@@ -1,0 +1,133 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+
+<div id="outer_container">
+	<h2><div id="upload_message">Upload Your Project's Pivotal Tracker API Key To See Your User Story Grades </div>
+	</h2>
+
+	<div id="api_submission_form"><%= form_tag(stories_path, :method=>'get', :multipart => true) do %>
+		<p style="font-size:2em;text-align:center;color:rgb(60, 71, 80);"><%= label_tag ("Upload API key:") %></p>
+		</br>
+		<%= text_field_tag "q" %>
+		<div id="submit_button"><%= submit_tag("Upload") %></div>
+		<% end %>
+	</div>
+</div>	
+
+<div id="second_container">
+	<div id="new_users_message"><h1>New to StoryTellers?</h1></div>
+	<h3>Your project is assigned an overall score on a 100-point scale, based on a number of different metrics.
+		Click on a test below to learn how each subscore is calculated:</h3>
+</div>	
+
+	<div id="container" style="width:100%; height:400px;"></div>
+	<div id="grade_chart">
+	<script>
+		$(function () {
+			$('#container').highcharts({
+				chart: {
+					type: 'pie',
+					options3d: {
+						enabled: true,
+						alpha: 45
+					}
+				},
+				credits: {
+					enabled: false
+				},
+				title: {
+					text: 'Grade Breakdown'
+				},
+				plotOptions: {
+					pie: {
+						innerSize: 100,
+						depth: 45
+					}
+				},
+				series: [{
+					name: 'Delivered amount',
+					data: [
+					['Length', 30],
+					['Value', 30],
+					['Goal', 20],
+					['Role', 20]
+					]
+				}]
+			});
+		});
+
+
+	</script>
+
+		<div class="score_explanations">
+			<div id="length_score_button", class="score_buttons"><h3>Length Score</h3></div>
+			<div id="length_score_explanation"><p>User stories need to be of an appropriate length in order to be valuable to the dev team: not too long, and not too short. You lost points for each user story that is fewer than 6 words long, or longer than 50 words. Your final score is calculated as a ratio of appropriately-sized stories to the total number of stories in your project.</p></div>
+
+			<!-- <div id="clarity_score_button" class="score_buttons"><h3>Clarity Score</h3></div>
+			<div id="clarity_score_explanation">
+				<p>Your clarity score is the weighted average of 3 subscores: Value Score (50%), Role Score (25%), and Goal Score (25%). Click the buttons below to read about each of these subscores:</p>
+			</div>	 -->
+
+			<div id="value_score_button" class="score_buttons"><h3>Value Score</h3></div>
+			<div id="value_score_explanation">
+				<p>Your value score is the weighted average of 2 subscores: "So That" Score (50%) and Value Ratio Score (50%). Click the buttons below to read about each of these subscores: </p>
+			</div>
+
+			<div id="so_that_score_button" class="score_buttons"><h3>"So That" Score</h3></div>
+			<div id="so_that_score_explanation">
+				<p>The efficient and most common construction when describing the purpose of your user story is "so that". Including this clause in your user story ensures that you will include a good reason for the feature to be built in the first place, which is essential for the dev team to understand. Any user story that does not use the "so that" structure is assumed to be purposeless, and fails this test. </p>
+			</div>
+
+			<div id="value_ratio_score_button" class="score_buttons"><h3>Value Ratio Score</h3></div>
+			<div id="value_ratio_score_explanation">
+				<p>User stories should not just provide a reason for the feature to be built, but should include details regarding the value of the feature so that the dev team has a clear understanding of why it is important enough to be built. Any user story that does not have at least 1/3 of its content following the "so that" clause, fails this test. </p>
+			</div>
+
+			<div id="role_score_button" class="score_buttons"><h3>Role Score</h3></div>
+			<div id="role_score_explanation">
+				<p>Your role score indicates how many of your user stories clearly define a role, or persona, for whom the feature is useful. We look for any of 4 words/phrases: "as a", "user", "admin", or "i". Any user story lacking one of these constructions is determined to have no defined role or persona, and thus fails this test. </p>
+			</div>
+
+			<div id="goal_score_button" class="score_buttons"><h3>Goal Score</h3></div>
+			<div id="goal_score_explanation">
+				<p>Your goal score indicates how many of your user stories clearly define a goal. This goal is usually a feature that the client wants the dev to build. We look for one of 2 constructions "I want", or "I should". If neither phrase is present, your user story does not clearly specify what you hope to accomplish. </p>
+			</div>
+		</div>	
+	</div>
+	<script>
+	$("#length_score_button").click(function(){
+		$("#length_score_explanation").toggle();
+	});
+
+	$("#clarity_score_button").click(function(){
+		$("#clarity_score_explanation").toggle();
+	});
+
+	$("#value_score_button").click(function(){
+		$("#value_score_explanation").toggle();
+	});
+
+	$("#so_that_score_button").click(function(){
+		$("#so_that_score_explanation").toggle();
+	});
+
+	$("#value_ratio_score_button").click(function(){
+		$("#value_ratio_score_explanation").toggle();
+	});
+
+	$("#role_score_button").click(function(){
+		$("#role_score_explanation").toggle();
+	});
+
+	$("#goal_score_button").click(function(){
+		$("#goal_score_explanation").toggle();
+	});
+
+	$("#value_score_button").click(function(){
+		$("#so_that_score_button").toggle();
+	});
+
+	$("#value_score_button").click(function(){
+		$("#value_ratio_score_button").toggle();
+	});
+	</script>

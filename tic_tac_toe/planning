@@ -1,0 +1,31 @@
+#Make a player class
+- intialize method: @name = name argument; @symbol = whatever symbol we assign to the player (X or O); @turn will be true or false-- send in true to player 1's initialize and false to player 2's initialize
+- Accessor method: def turn should return the value of @turn
+- Setter method: def swap_turn does this: @turn ^= true
+
+#Alternate asking players for input
+-Wrap the whole thing in a while true loop, broken only when there is a winner or all squares are filled (worry about this later)
+-Begin the loop by checking whose turn it is. Accomplish this with an if-else statement
+	-->This will check the boolean @turn for each player, and proceed with the player whose value is set to true
+	-->*** At the end of the turn, swap BOTH players' @turn values by doing player.swap_turn
+
+#Alert players of invalid input
+
+#Make a squares class
+- The intialize method will create an empty string
+	The intialize method will also take a name argument, and will set @name equal to name
+	The initialize method will also set @contents equal to " ", the space to be filled by an X or an O eventually
+- Each square should have an @full value, which is initialized to false
+
+#Define a board
+-Create a grid class
+-Should have a parameter, @grid, that's an array of 9 empty strings to represent the empty spaces. **Each of these 9 strings is an instance of the squares class!**
+-Methods:
+--> fill: accepts one argument, which will be the character of the player on which this fill method is called.
+	Example: If player 1 picks square 3, we would do: 3.fill(...Whatever we will use to define player 1's character, X or O)
+	The fill method will put this argument into the empty string, and turn the grid's status value to true
+--> So every time we receive player input, a square is filled with that player's character	
+
+#Prevent the same square from being filled in twice
+
+#Alert when someone has won

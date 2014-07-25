@@ -1,0 +1,51 @@
+$primary-color: #0C64E8;
+
+html, body {
+	margin: -1% 0 0 0;
+	font-family: $lucida-grande;
+	
+}
+
+#length_explanation,
+.length_data,
+#value_explanation,
+#value_data,
+#role_explanation,
+#goal_explanation,
+#role_data,
+#goal_data,
+#clarity_three_scores,
+#worst_data,
+.stories_for_project {
+	
+	color: $primary-color;
+}
+
+#grades_welcome {
+	@include border-style(null null solid);
+	@include border-color(null null gray null);
+	background-color: $primary-color;
+	width: 100%;
+	height: 50px;
+	
+	h1  {
+	@include padding(5px null 10px 3em);
+	text-align: center;
+	color: white;
+	
+	&:hover {
+
+		color: red;
+	}
+}
+}
+
+
+
+.length_data,
+#value_data,
+#role_data,
+#goal_data {
+	
+	text-align: left
+}

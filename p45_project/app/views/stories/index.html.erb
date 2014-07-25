@@ -1,23 +1,128 @@
-<h1>List of all User Stories</h1>
+<div id="grades_welcome">
 
-<% @stories.each_with_index do |story, index| %>
-	<%= "#{index + 1}" %>. <%= story.user.name %><%= story.body %>
-<% end %>
+<h1>Your Projects </h1>
 
-<h2>Create a new story: </h2>
+<div>
+<% @projects_stories.each_with_index do |project, index| %>
+<%= content_tag :div, class: "#{project[0]}" do -%>
+<%= project[0] %>: <strong><%= @total_score[index] %>%</strong>
+<%end-%>
+<br/>
+<%= content_tag :div, class: "stories_for_project_#{index}" do -%>
 
-<%= form_tag(stories_path, :method=>'post', :multipart => true) do %>
- <p>
-   Body:<br />
-   <%= text_field_tag "body" %>
- </p>
- <% end %>
+		
+  
+	<!-- Calculate user score as ratio of 'A's to total number of user stories based on the grade_length method -->
+	Your Length Score: <strong><%= @length_data[index][:percent_grade] %>%</strong>
+		</br>
+	
+		
+	<!-- Displays an array of individual grades for all user stories -->	
+		<div class="length_scores">See stories that failed this test: </div>
+	</br>
+	<div class="length_data">
+		<% @length_data[index][:failed_stories].each_with_index do |story, index| %>
+			<%= "#{index+1}. #{story}" %></br>
+		<% end %></br>
+	</div>
+</br>
 
- <% a = @total_grade.count("A") %>
 
- <% b = @total_grade.size  %>
 
- Your Score: <%= ((a/b.to_f) * 100).to_i %>%
 
- <%= @total_grade %>
+	Your Clarity Score: <strong><%= @clarity_data[index].to_i %>%</strong>
+
+
+	</br>
+	<div id="clarity_score">See how this score was calculated: </div>
+	</br>
+
+	<!-- Create div for value, goal and role data; the three together comprise clarity data -->
+	<div id="clarity_three_scores">
+	<!-- Calculate user score as ratio of 'A's to total number of user stories based on the grade_value method, weighted
+	50%, and the grade_value_length method, weighted 50% -->
+	Your Value Score: <strong><%=((@value_data[index][:percent_grade] * 0.5) + (@value_length_data[index][:percent_grade] * 0.5)) %>%</strong>
+		</br>
+		
+	<!-- Displays an array of individual grades for all failed user stories for the value test-->	
+		<div id="value_score">See stories that failed this test: </div>
+		
+</br>
+	<div id="value_data">
+	<% @value_data[index][:failed_stories].each_with_index do |story, index| %>
+			<%= "#{index+1}. #{story}" %></br>
+		<% end %></br></div>
+
+	Your Role Score: <strong><%=@role_data[index][:percent_grade] %>%</strong>
+	</br>
+	
+
+		<!-- Displays an array of individual grades for all failed user stories for the role test -->	
+		<div id="role_score">See stories that failed this test: </div>
+</br>
+	<div id="role_data">
+		<% @role_data[index][:failed_stories].each_with_index do |story, index| %>
+			<%= "#{index+1}. #{story}" %></br>
+		<% end %></br></div>
+
+
+	Your Goal Score: <strong><%=@goal_data[index][:percent_grade] %>%</strong>
+		</br>
+	
+
+			<!-- Displays an array of individual grades for all failed user stories for the goal test -->	
+		<div id="goal_score">See stories that failed this test: </div>
+</br>
+	<div id="goal_data">
+		<% @goal_data[index][:failed_stories].each_with_index do |story, index| %>
+			<%= "#{index+1}. #{story}" %></br>
+		<% end %></br></div>
+		
+<%end-%>
+</div>
+<%end%>
+</div>
+
+<!-- <script>
+$(".length_scores").click(function(){
+  $(".length_data").toggle();
+});
+
+$("#value_score").click(function(){
+  $("#value_data").toggle();
+});
+
+$("#length_explanation_button").click(function(){
+	$("#length_explanation").toggle();
+});
+
+$("#value_explanation_button").click(function(){
+	$("#value_explanation").toggle();
+});
+
+$("#goal_explanation_button").click(function(){
+	$("#goal_explanation").toggle();
+});
+
+$("#role_explanation_button").click(function(){
+	$("#role_explanation").toggle();
+});
+
+$("#role_score").click(function(){
+	$("#role_data").toggle();
+});
+
+$("#goal_score").click(function(){
+	$("#goal_data").toggle();
+});
+
+$("#clarity_score").click(function(){
+	$("#clarity_three_scores").toggle();
+});
+
+$(".project").click(function(){
+	$(".stories_for_project").toggle();
+});
+</script> -->
+
 

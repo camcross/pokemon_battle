@@ -1,0 +1,13 @@
+<ul>
+	<% @posts.each do |post| %>
+	<li>
+		<% if post.user_id %>
+		<%= post.user %>
+		<% end %>
+		<%= post.body %>
+
+	</li>
+
+	<% end %>
+</ul>	
+
