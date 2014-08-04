@@ -11,11 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140804132246) do
+ActiveRecord::Schema.define(version: 20140804135557) do
 
   create_table "pokemons", force: true do |t|
-    t.integer "national_dex_id"
-    t.string  "name"
+    t.integer  "national_dex_id"
+    t.string   "name"
+    t.integer  "attack"
+    t.integer  "defense"
+    t.integer  "hp"
+    t.integer  "speed"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

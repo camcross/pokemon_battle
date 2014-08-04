@@ -12,5 +12,10 @@ require 'json'
 1.upto(9) do |num|
 	response = RestClient.get("http://pokeapi.co/api/v1/pokemon/#{num}")
 	parse = JSON.parse(response)
-	Pokemon.create("name" => parse["name"], "national_dex_id" => parse["national_id"])
+	Pokemon.create( "name" => parse["name"], 
+					"national_dex_id" => parse["national_id"],
+					"attack" => parse["attack"],
+					"hp" => parse["hp"],
+					"speed" => parse["speed"],
+					"defense" => parse["defense"])
 end
