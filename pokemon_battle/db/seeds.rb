@@ -5,3 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+require 'rest_client'
+require 'json'
+
+1.upto(9) do |num|
+	response = RestClient.get("http://pokeapi.co/api/v1/pokemon/#{num}")
+	parse = JSON.parse(response)
+	Pokemon.create("name" => parse["name"], "national_dex_id" => parse["national_id"])
+end
